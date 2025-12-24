@@ -77,7 +77,7 @@ This tool was born from pure frustration.
 ## 🗺️ Roadmap
 
 ### v1 (MVP)
-- [ ] GitHub OAuth
+- [X] GitHub OAuth
 - [ ] Laravel project analyzer
 - [ ] Dockerfile generator
 - [ ] docker-compose generator
