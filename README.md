@@ -77,11 +77,11 @@ This tool was born from pure frustration.
 ## 🗺️ Roadmap
 
 ### v1 (MVP)
-- [] GitHub OAuth
-- [] Laravel project analyzer
-- [] Dockerfile generator
-- [] docker-compose generator
-- [] Kubernetes base manifests
+- [ ] GitHub OAuth
+- [ ] Laravel project analyzer
+- [ ] Dockerfile generator
+- [ ] docker-compose generator
+- [ ] Kubernetes base manifests
 
 ### v2
 - [ ] Advanced Kubernetes options
