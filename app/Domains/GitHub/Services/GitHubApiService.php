@@ -12,23 +12,57 @@ class GitHubApiService
     ) {}
 
     /**
-     * Get user repositories
+     * Get user repositories with optional search and pagination
      */
-    public function getUserRepositories(string $token, int $perPage = 30): array
+    public function getUserRepositories(string $token, string $query = null, int $page = 1, int $perPage = 30): array
     {
-        $response = Http::withToken($token)
-            ->get("{$this->baseUrl}/user/repos", [
-                'sort' => 'updated',
-                'per_page' => $perPage,
-            ]);
+        if ($query) {
+            // Use search API for filtering
+            $response = Http::withToken($token)
+                ->get("{$this->baseUrl}/search/repositories", [
+                    'q' => "user:" . $this->getUsernameFromToken($token) . " {$query}",
+                    'sort' => 'updated',
+                    'per_page' => $perPage,
+                    'page' => $page,
+                ]);
 
-        if ($response->failed()) {
-            throw new \Exception('Failed to fetch repositories: ' . $response->body());
+            if ($response->failed()) {
+                throw new \Exception('Failed to search repositories: ' . $response->body());
+            }
+
+            $data = $response->json();
+            $repos = $data['items'] ?? [];
+        } else {
+            // Use user repos API
+            $response = Http::withToken($token)
+                ->get("{$this->baseUrl}/user/repos", [
+                    'sort' => 'updated',
+                    'per_page' => $perPage,
+                    'page' => $page,
+                ]);
+
+            if ($response->failed()) {
+                throw new \Exception('Failed to fetch repositories: ' . $response->body());
+            }
+
+            $repos = $response->json();
         }
 
-        $repos = $response->json();
-
         return array_map(fn($repo) => Repository::fromApiResponse($repo), $repos);
+    }
+
+    /**
+     * Get username from token (for search API)
+     */
+    private function getUsernameFromToken(string $token): string
+    {
+        $response = Http::withToken($token)->get("{$this->baseUrl}/user");
+
+        if ($response->failed()) {
+            throw new \Exception('Failed to get user info: ' . $response->body());
+        }
+
+        return $response->json()['login'];
     }
 
     /**

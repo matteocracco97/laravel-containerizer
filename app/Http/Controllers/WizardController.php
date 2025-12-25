@@ -14,14 +14,48 @@ class WizardController extends Controller
     ) {}
 
 
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $repos = $this->githubApi->getUserRepositories(auth()->user()->github_token);
-            return view('dashboard', compact('repos'));
+            $query = $request->get('q');
+            $page = $request->get('page', 1);
+            $perPage = 6; // Show 6 repos per page
+
+            $repos = $this->githubApi->getUserRepositories(
+                auth()->user()->github_token,
+                $query,
+                $page,
+                $perPage
+            );
+
+            return view('dashboard', compact('repos', 'query', 'page'));
         } catch (\Exception $e) {
             auth()->logout();
             return redirect()->route('login')->with('error', 'GitHub session expired.');
+        }
+    }
+
+    public function getRepos(Request $request)
+    {
+        try {
+            $query = $request->get('q');
+            $page = $request->get('page', 1);
+            $perPage = 6;
+
+            $repos = $this->githubApi->getUserRepositories(
+                auth()->user()->github_token,
+                $query,
+                $page,
+                $perPage
+            );
+
+            return response()->json([
+                'repos' => $repos,
+                'hasMore' => count($repos) >= 6,
+                'page' => $page
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch repositories'], 500);
         }
     }
 
