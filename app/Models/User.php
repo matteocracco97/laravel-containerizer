@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Eloquent User Model
+ *
+ * Infrastructure layer model for database operations.
+ * Business logic is handled in the Domain layer.
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -35,7 +41,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'github_token', 
+        'github_token',
         'github_refresh_token',
     ];
 

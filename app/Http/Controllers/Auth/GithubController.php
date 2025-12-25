@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Domains\User\Repositories\UserRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GithubController extends Controller
 {
+    public function __construct(
+        private UserRepositoryInterface $userRepository
+    ) {}
+
     public function redirect()
     {
         return Socialite::driver('github')
@@ -20,9 +24,7 @@ class GithubController extends Controller
     {
         $githubUser = Socialite::driver('github')->user();
 
-        $user = User::updateOrCreate([
-            'github_id' => $githubUser->id,
-        ], [
+        $user = $this->userRepository->updateOrCreateByGithubId($githubUser->id, [
             'name' => $githubUser->getName() ?? $githubUser->getNickname(),
             'email' => $githubUser->getEmail(),
             'github_token' => $githubUser->token,
