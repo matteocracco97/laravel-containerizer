@@ -1,116 +1,78 @@
-# Laravel Containerizer 🚀
+<div align="center">
 
-> From a Laravel repository to Docker & Kubernetes in minutes.
+# 🚀 LARAVEL CONTAINERIZER
+**Because life is too short to debug YAML indentation.**
 
-Laravel Containerizer is an **open-source, Laravel-first tool** that analyzes your Laravel project and automatically generates:
+[![Laravel 12](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP 8.4](https://img.shields.io/badge/PHP-8.4-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![YAML Slayer](https://img.shields.io/badge/YAML-Slayer-black?style=for-the-badge)](#)
+[![PA Compliant](https://img.shields.io/badge/Public_Admin-Ready-blue?style=for-the-badge)](#)
 
-- Dockerfile
-- docker-compose.yml
-- Kubernetes manifests (PA-ready)
+### ⚠️ WARNING: LARAVEL ONLY.
+*If you're trying to containerize your weird Node.js experimental framework, you're in the wrong neighborhood.*
 
-All through a **modern UI wizard**.
-
----
-
-## ❓ Why this exists
-
-If you are a Laravel developer, you already know the pain:
-
-- Writing Dockerfiles every time
-- Fighting with docker-compose
-- Converting everything to Kubernetes YAML
-- Public Administrations that **ban docker-compose** and only want manifests
-
-This tool was born from pure frustration.
+[**See it in Action**](#) • [**Report a Headache**](#) • [**Beg for Features**](#)
 
 ---
 
-## ✨ What it does
 
-✅ Connects to your GitHub account  
-✅ Analyzes your Laravel repository  
-✅ Detects:
-- Database driver
-- Redis
-- Queues
-- Scheduler
-- Horizon
-- WebSockets
-- Storage drivers  
 
-✅ Generates:
-- Optimized Dockerfile (multi-stage, non-root, cache-friendly)
-- Clean docker-compose.yml
-- Kubernetes manifests (Deployment, Service, ConfigMap, Secret, Job)
+</div>
+
+## 😫 The "Why"
+Let’s be real. You’re a Laravel developer. You want to write Elegant PHP™, not fight with a `docker-compose.yml` that breaks because you added one extra space. 
+
+**Laravel Containerizer** is your personal DevOps butler. It looks at your `composer.json`, understands your soul, and spits out production-ready infrastructure.
 
 ---
 
-## 🧩 Who is this for?
+## 🛠️ What’s in the Box? (The Good Stuff)
 
-- Laravel developers
-- DevOps beginners
-- Public Administration projects
-- Teams that want **standardized deployments**
-
----
-
-## 🖥️ UI Preview
-
-> 🚧 Demo GIF coming soon
-
-*(Wizard → Options → Generated files)*
-
----
-
-## ⚙️ Features
-
-- Laravel 12 compatible
-- PHP 8.3+
-- GitHub OAuth
-- Smart dependency detection
-- UX-first wizard
-- Kubernetes-first mindset
-- PA-ready manifests
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4>🕵️ Deep Tissue Scan</h4>
+      <ul>
+        <li><b>No Cloner, No Cry:</b> We use the GitHub API. We don't touch your disk.</li>
+        <li><b>Stack Detective:</b> We find your Redis, your DB, and your secret Horizon obsession automatically.</li>
+        <li><b>L12 Supremacy:</b> Built for Laravel 12. If you're on L5, please call a priest.</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h4>🏗️ Elite Infra Output</h4>
+      <ul>
+        <li><b>Slim Shady Docker:</b> Multi-stage builds so small they'll make your eyes water.</li>
+        <li><b>K8s Mastery:</b> Deployments, HPA, ConfigMaps. No more "Wait, what's an Ingress?".</li>
+        <li><b>PA-Ready:</b> Manifests so compliant they could run for office.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🗺️ Roadmap
+## 🏗 The "Boring" Tech Stuff
 
-### v1 (MVP)
-- [X] GitHub OAuth
-- [ ] Laravel project analyzer
-- [ ] Dockerfile generator
-- [ ] docker-compose generator
-- [ ] Kubernetes base manifests
-
-### v2
-- [ ] Advanced Kubernetes options
-- [ ] Helm chart export
-- [ ] Playground (preview only)
-
-### v3
-- [ ] Full playground (sandbox execution)
-- [ ] CI/CD generator
-- [ ] PA compliance templates
+| Layer | Technology | Vibe |
+| :--- | :--- | :--- |
+| **The Brain** | Laravel 12 + PHP 8.4 | Pure Modernity |
+| **The Face** | Alpine.js + Tailwind | Fast & Light |
+| **The Magic** | Custom Dependency Mapper | Mind Reading |
+| **The Source** | GitHub REST API v3 | Remote Surgery |
 
 ---
 
-## 🛠️ Tech Stack
-
-- Laravel 12
-- PHP 8.3+
-- Tailwind CSS
-- GitHub API
-- Symfony YAML
-- Monaco Editor (future)
-
----
-
-## 📦 Installation (local dev)
+## 🚀 Get it Running (Before the boss walks in)
 
 ```bash
-git clone https://github.com/<your-username>/laravel-containerizer.git
-cd laravel-containerizer
-composer install
-npm install && npm run dev
+# 1. Steal the code
+git clone [https://github.com/your-username/laravel-containerizer.git](https://github.com/your-username/laravel-containerizer.git)
+
+# 2. Feed the dependencies (They are hungry)
+composer install && npm install && npm run dev
+
+# 3. Pray to the .env gods
+cp .env.example .env && php artisan key:generate
+
+# 4. Release the beast
 php artisan serve
