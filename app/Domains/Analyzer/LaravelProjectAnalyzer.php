@@ -19,6 +19,7 @@ class LaravelProjectAnalyzer
             database: $this->detectDatabase($envContent),
             hasScheduler: true,
             hasQueue: $this->detectQueue($allDeps),
+            laravelVersion: $this->detectLaravelVersion($require),
         );
     }
 
@@ -50,5 +51,12 @@ class LaravelProjectAnalyzer
     private function detectQueue(array $deps): bool
     {
         return isset($deps['laravel/horizon']) || isset($deps['predis/predis']);
+    }
+
+    private function detectLaravelVersion(array $require): string
+    {
+        $laravelVersion = $require['laravel/framework'] ?? '^10.0';
+        preg_match('/\d+\.\d+/', $laravelVersion, $matches);
+        return $matches[0] ?? '10.0';
     }
 }

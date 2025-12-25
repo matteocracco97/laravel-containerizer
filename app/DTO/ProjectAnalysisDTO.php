@@ -10,6 +10,7 @@ readonly class ProjectAnalysisDTO
         public string $database, // mysql, pgsql, sqlite
         public bool $hasScheduler,
         public bool $hasQueue,
+        public string $laravelVersion,
     ) {}
 
     public function toArray(): array

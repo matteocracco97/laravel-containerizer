@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Domains\Analyzer\LaravelProjectAnalyzer;
+use App\Domains\GitHub\Services\GitHubApiService;
 use Illuminate\Http\Request;
 
 class ImportController extends Controller
 {
     public function __construct(
-        protected LaravelProjectAnalyzer $analyzer
+        protected LaravelProjectAnalyzer $analyzer,
+        protected GitHubApiService $githubApi
     ) {}
 
     public function analyzeTest()
