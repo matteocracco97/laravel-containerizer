@@ -23,6 +23,22 @@
             </div>
         </nav>
 
+        @if(session('error'))
+            <div class="max-w-5xl mx-auto w-full px-6 py-4">
+                <div class="bg-red-900/20 border border-red-800 text-red-200 px-4 py-3 rounded-lg">
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="max-w-5xl mx-auto w-full px-6 py-4">
+                <div class="bg-green-900/20 border border-green-800 text-green-200 px-4 py-3 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
         <main class="flex-1 max-w-5xl mx-auto w-full py-12 px-6">
             {{ $slot }}
         </main>
