@@ -19,7 +19,7 @@
 
 </div>
 
-## 😫 The "Why"
+## The "Why"
 Let’s be real. You’re a Laravel developer. You want to write Elegant PHP™, not fight with a `docker-compose.yml` that breaks because you added one extra space. 
 
 **Laravel Containerizer** is your personal DevOps butler. It looks at your `composer.json`, understands your soul, and spits out production-ready infrastructure.
